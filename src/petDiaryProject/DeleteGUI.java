@@ -89,46 +89,33 @@ public class DeleteGUI extends JFrame {
 	}
 	
 	void btnConfirmClick(String userAnswer) {
-		/*
+
 		try {
+			File pets = new File("petList.txt");
+			Scanner scan = new Scanner(pets);
 			
-			FileWriter currentOutput1 = new FileWriter("petList.txt");
-			FileWriter tempOutput = new FileWriter("tempList.txt", true);
-			FileReader currentReader = new FileReader("petList.txt");
-			FileReader tempReader = new FileReader("tempList.txt");
-			BufferedReader currentInput = new BufferedReader(currentReader);
-			BufferedReader tempInput = new BufferedReader(tempReader);
+			String currentPet;
+			String list = "";
 			
-			String currentLine = currentInput.readLine();
-			
-			while (currentLine != null) {
-				if (userAnswer.equals(currentLine) == false) {
-					tempOutput.write(currentLine + "\n");
+			while (scan.hasNextLine()) {
+				currentPet = scan.nextLine();
+
+				if (userAnswer.equals(currentPet) == false) {
+					list += currentPet + "\n";
 				}
 			}
 			
-			currentOutput1.write("");
-			FileWriter currentOutput2 = new FileWriter("petList.txt");
-			String tempLine = tempInput.readLine();
-			
-			while (tempLine != null) {
-				currentOutput2.write(tempLine + "\n");
-			}
-			
-			tempOutput.write("");
-			
-			currentOutput1.close();
-			currentOutput2.close();
-			tempOutput.close();
-			currentInput.close();
-			tempInput.close();
+			FileWriter writer = new FileWriter(pets, false);
+			writer.write(list);
+
+			writer.close();
 			
 			lblConfirmation.setText("Name successfully deleted.");
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}*/
+		}
 	}
 	
 	void btnMainClick() {
