@@ -404,6 +404,19 @@ public class DiaryGUI extends JFrame {
 		btnSaveNotes.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		btnSaveNotes.setBounds(502, 459, 51, 21);
 		contentPane.add(btnSaveNotes);
+
+		btnMain = new JButton("Main");
+		btnMain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnMainClick();
+			}
+		});
+		btnMain.setBackground(new Color(143, 188, 143));
+		btnMain.setBorderPainted(false);
+		btnMain.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		btnMain.setBounds(450, 15, 70, 31);
+		contentPane.add(btnMain);
 		
 	}
 	
