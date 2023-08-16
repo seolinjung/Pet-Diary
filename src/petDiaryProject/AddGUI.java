@@ -115,17 +115,17 @@ public class AddGUI extends JFrame {
 			remindersFile.mkdirs();
 			
 			FileWriter infoOutput = new FileWriter(infoDir + "/info.txt");
-			infoOutput.write("Age" + "\n\n");
-			infoOutput.write("Sex" + "\n\n");
-			infoOutput.write("Breed" + "\n\n");
-			infoOutput.write("Weight" + "\n\n");
-			infoOutput.write("Meal Specifications" + "\n\n");
-			infoOutput.write("Meds Specifications" + "\n\n");
+			infoOutput.write("Age:"+ "\n");
+			infoOutput.write("M/F:"+ "\n");
+			infoOutput.write("Breed:"+ "\n");
+			infoOutput.write("Weight:"+ "\n");
+			infoOutput.write("Meal specifications:"+ "\n");
+			infoOutput.write("Medicine:"+ "\n");
 			infoOutput.close();
 			
 			FileWriter remindersOutput = new FileWriter(remindersDir + "/reminders.txt");
-			remindersOutput.write("Next vet visit" + "\n\n");
-			remindersOutput.write("Next groomer visit" + "\n\n");
+			remindersOutput.write("Next vet visit" + "\n");
+			remindersOutput.write("Next groomer visit" + "\n");
 			remindersOutput.close();
 
 			FileWriter output = new FileWriter("petList.txt", true);
