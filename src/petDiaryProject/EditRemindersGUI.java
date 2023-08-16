@@ -81,13 +81,13 @@ public class EditRemindersGUI extends JFrame {
 		txtVetVisit = new JTextArea();
 		txtVetVisit.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtVetVisit.setText("Enter New Vet Visit Date (ex. 20230819):");
-		txtVetVisit.setBounds(25, 95, 532, 34);
+		txtVetVisit.setBounds(25, 95, 600, 34);
 		contentPane.add(txtVetVisit);
 		
 		txtGroomerVisit = new JTextArea();
 		txtGroomerVisit.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtGroomerVisit.setText("Enter New Groomer Visit Date (ex. 20231024):");
-		txtGroomerVisit.setBounds(25, 202, 532, 34);
+		txtGroomerVisit.setBounds(25, 202, 600, 34);
 		contentPane.add(txtGroomerVisit);
 		
 		lblConfirmation = new JLabel("");
@@ -106,6 +106,7 @@ public class EditRemindersGUI extends JFrame {
 		btnConfirm.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnConfirm.setBorderPainted(false);
 		btnConfirm.setBackground(new Color(250, 235, 215));
+		btnConfirm.setOpaque(true);
 		btnConfirm.setBounds(25, 376, 236, 33);
 		contentPane.add(btnConfirm);
 		
@@ -119,6 +120,7 @@ public class EditRemindersGUI extends JFrame {
 		btnDiary.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnDiary.setBorderPainted(false);
 		btnDiary.setBackground(new Color(250, 235, 215));
+		btnDiary.setOpaque(true);
 		btnDiary.setBounds(321, 376, 236, 33);
 		contentPane.add(btnDiary);
 	}
