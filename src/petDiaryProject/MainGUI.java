@@ -54,18 +54,20 @@ public class MainGUI extends JFrame {
 		
 		btnManage = new JButton("Manage Pets");
 		btnManage.setBackground(new Color(176, 196, 222));
+		btnManage.setOpaque(true);
 		btnManage.setBorderPainted(false);
 		btnManage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnManageClick();
 			}
 		});
-		btnManage.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		btnManage.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		btnManage.setBounds(211, 300, 164, 34);
 		contentPane.add(btnManage);
 		
 		btnDiary = new JButton("Open Diary");
 		btnDiary.setBackground(new Color(176, 196, 222));
+		btnDiary.setOpaque(true);
 		btnDiary.setBorderPainted(false);
 		btnDiary.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,6 +80,7 @@ public class MainGUI extends JFrame {
 		
 		btnExit = new JButton("Exit");
 		btnExit.setBackground(new Color(176, 196, 222));
+		btnExit.setOpaque(true);
 		btnExit.setBorderPainted(false);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
