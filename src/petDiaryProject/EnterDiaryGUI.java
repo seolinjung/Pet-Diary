@@ -47,6 +47,7 @@ public class EnterDiaryGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtAnswer = new JTextField();
+		txtAnswer.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnswer.setBorder(new LineBorder(new Color(171, 173, 179)));
 		txtAnswer.setBounds(276, 31, 193, 29);
 		contentPane.add(txtAnswer);
