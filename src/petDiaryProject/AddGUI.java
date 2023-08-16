@@ -15,6 +15,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,8 +31,10 @@ public class AddGUI extends JFrame {
 	private JButton btnMain;
 	private JButton btnConfirm;
 	private JLabel lblConfirmation;
+	
 
 	public AddGUI() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 250);
 		contentPane = new JPanel();
@@ -61,6 +67,7 @@ public class AddGUI extends JFrame {
 		
 		btnMain.setForeground(Color.BLACK);
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		btnMain.setOpaque(true);
 		btnMain.setBackground(new Color(250, 235, 215));
 		btnMain.setBounds(292, 85, 143, 33);
 		contentPane.add(btnMain);
@@ -78,6 +85,7 @@ public class AddGUI extends JFrame {
 		btnConfirm.setForeground(Color.BLACK);
 		btnConfirm.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnConfirm.setBackground(new Color(250, 235, 215));
+		btnConfirm.setOpaque(true);
 		btnConfirm.setBounds(138, 85, 143, 33);
 		contentPane.add(btnConfirm);
 
@@ -128,7 +136,7 @@ public class AddGUI extends JFrame {
 			remindersOutput.write("Next vet visit" + "\n\n");
 			remindersOutput.write("Next groomer visit" + "\n\n");
 			remindersOutput.close();
-
+			
 			FileWriter listOutput = new FileWriter("petList.txt", true);
 			listOutput.write(userAnswer + "\n");
 			listOutput.close();
@@ -146,4 +154,3 @@ public class AddGUI extends JFrame {
 		mainFrame.show();
 	}
 }
-
