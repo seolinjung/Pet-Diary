@@ -57,6 +57,7 @@ public class ManageGUI extends JFrame {
 		
 		btnAdd = new JButton("Add");
 		btnAdd.setBackground(new Color(250, 235, 215));
+		btnAdd.setOpaque(true);
 		btnAdd.setBorderPainted(false);
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -68,6 +69,7 @@ public class ManageGUI extends JFrame {
 		contentPane.add(btnAdd);
 		
 		btnDelete = new JButton("Delete");
+		btnDelete.setOpaque(true);
 		btnDelete.setBackground(new Color(250, 235, 215));
 		btnDelete.setBorderPainted(false);
 		btnDelete.addActionListener(new ActionListener() {
@@ -83,6 +85,7 @@ public class ManageGUI extends JFrame {
 		btnMain.setActionCommand("Main");
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnMain.setBorderPainted(false);
+		btnMain.setOpaque(true);
 		btnMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnMainClick();
@@ -130,4 +133,3 @@ public class ManageGUI extends JFrame {
 		mainFrame.show();
 	}
 }
-
