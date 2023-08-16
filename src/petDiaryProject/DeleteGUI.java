@@ -91,6 +91,8 @@ public class DeleteGUI extends JFrame {
 	void btnConfirmClick(String userAnswer) {
 
 		try {
+			boolean found = false;
+			
 			File pets = new File("petList.txt");
 			Scanner scan = new Scanner(pets);
 			
@@ -102,15 +104,21 @@ public class DeleteGUI extends JFrame {
 
 				if (userAnswer.equals(currentPet) == false) {
 					list += currentPet + "\n";
+				} else {
+					found = true;
 				}
 			}
+			
+			if (found == false) {
+				lblConfirmation.setText("Could not find name. Try again?");
+			} else {
 			
 			FileWriter writer = new FileWriter(pets, false);
 			writer.write(list);
 
 			writer.close();
 			
-			lblConfirmation.setText("Name successfully deleted.");
+			lblConfirmation.setText("Name successfully deleted."); }
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -124,3 +132,4 @@ public class DeleteGUI extends JFrame {
 		mainFrame.show();
 	}
 }
+
