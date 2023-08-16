@@ -81,13 +81,13 @@ public class EditRemindersGUI extends JFrame {
 		txtVetVisit = new JTextArea();
 		txtVetVisit.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtVetVisit.setText("Enter New Vet Visit Date (ex. 20230819):");
-		txtVetVisit.setBounds(25, 95, 339, 34);
+		txtVetVisit.setBounds(25, 95, 532, 34);
 		contentPane.add(txtVetVisit);
 		
 		txtGroomerVisit = new JTextArea();
 		txtGroomerVisit.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtGroomerVisit.setText("Enter New Groomer Visit Date (ex. 20231024):");
-		txtGroomerVisit.setBounds(25, 202, 384, 34);
+		txtGroomerVisit.setBounds(25, 202, 532, 34);
 		contentPane.add(txtGroomerVisit);
 		
 		lblConfirmation = new JLabel("");
