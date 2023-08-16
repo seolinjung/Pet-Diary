@@ -43,6 +43,7 @@ public class DiaryGUI extends JFrame {
 	
 	// notifications box top right
 	private JTextArea txtbxNotifications1;
+	private JTextArea txtbxNotifications2;
 	
 	// info & co. 
 	private JTextArea txtInfo;
@@ -59,9 +60,6 @@ public class DiaryGUI extends JFrame {
 	private JTextArea txtAnsMeals;
 	private JTextArea txtAnsMeds;	
 	private JButton btnEditInfo;
-
-	// notifications box bottom left
-	private JTextArea txtbxNotifications2;
 
 	// reminders & co
 	private JTextArea txtReminders;
@@ -85,16 +83,21 @@ public class DiaryGUI extends JFrame {
 	String infoPath;
 	String remindersPath;
 	String notesPath;
+	String notifsPath;
 
 	// back to main
 	private JButton btnMain;
+
+	// view past entries
+	private JButton btnPastEntries;
 	
 	public DiaryGUI(String dog, String date) {
 		
 		infoPath = System.getProperty("user.dir") + "/" + dog + "/Info/info.txt";
 		remindersPath = System.getProperty("user.dir") + "/" + dog + "/Reminders/reminders.txt";
 		notesPath = System.getProperty("user.dir") + "/" + dog + "/Entries/" + date + "/notes.txt";
-
+		notifsPath = System.getProperty("user.dir") + "/" + dog + "/Entries/" + "/Notifications/notifications.txt";
+		
 		userDog = dog;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 800);
@@ -135,7 +138,7 @@ public class DiaryGUI extends JFrame {
 		txtDate.setForeground(new Color(0, 0, 0));
 		txtDate.setFont(new Font("Monospaced", Font.ITALIC, 20));
 		txtDate.setText(fancyDate);
-		txtDate.setBounds(28, 26, 353, 31);
+		txtDate.setBounds(28, 37, 386, 31);
 		contentPane.add(txtDate);
 		
 		// title
@@ -143,7 +146,7 @@ public class DiaryGUI extends JFrame {
 		txtTitle.setEditable(false);
 		txtTitle.setFont(new Font("Monospaced", Font.BOLD, 22));
 		txtTitle.setText("Today's Diary For...");
-		txtTitle.setBounds(28, 77, 263, 39);
+		txtTitle.setBounds(28, 89, 263, 39);
 		contentPane.add(txtTitle);
 		
 		// name
@@ -152,7 +155,7 @@ public class DiaryGUI extends JFrame {
 		txtName.setForeground(new Color(255, 215, 0));
 		txtName.setFont(new Font("Monospaced", Font.BOLD, 22));
 		txtName.setText("* " + dog + " *");
-		txtName.setBounds(304, 77, 249, 39);
+		txtName.setBounds(304, 89, 249, 39);
 		contentPane.add(txtName);
 		
 		// line (um, I didn't really count the number of "-"s)
@@ -200,11 +203,36 @@ public class DiaryGUI extends JFrame {
 		
 		// notifications top right
 		txtbxNotifications1 = new JTextArea();
-		txtbxNotifications1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		txtbxNotifications1.setBounds(177, 170, 376, 76);
+		txtbxNotifications1.setForeground(new Color(0, 0, 0));
+		txtbxNotifications1.setFont(new Font("Monospaced", Font.ITALIC, 18));
+		txtbxNotifications1.setText(getNotifications1(dog, date));
+		txtbxNotifications1.setBorder(null);
+		txtbxNotifications1.setBounds(177, 170, 376, 31);
 		txtbxNotifications1.setLineWrap(true);
 		txtbxNotifications1.setWrapStyleWord(true);
 		contentPane.add(txtbxNotifications1);
+
+		// notifications top right 2
+		txtbxNotifications2 = new JTextArea();
+		txtbxNotifications2.setWrapStyleWord(true);
+		txtbxNotifications2.setText(getNotifications2(dog, date));
+		txtbxNotifications2.setLineWrap(true);
+		txtbxNotifications2.setFont(new Font("Monospaced", Font.ITALIC, 18));
+		txtbxNotifications2.setBorder(null);
+		txtbxNotifications2.setBounds(177, 210, 376, 31);
+		contentPane.add(txtbxNotifications2); 
+
+		if (getNotifications1(dog, date) == "No notifications today." && getNotifications2(dog, date) == "No notifications today.") {
+			txtbxNotifications2.setText("");
+		}
+		
+		if (getNotifications1(dog, date) == "No notifications today." && getNotifications2(dog, date) != "No notifications today.") {
+			txtbxNotifications1.setText("");
+		}
+
+		if (getNotifications1(dog, date) != "No notifications today." && getNotifications2(dog, date) == "No notifications today.") {
+			txtbxNotifications2.setText("");
+		}
 		
 		// info
 		txtInfo = new JTextArea();
@@ -220,7 +248,7 @@ public class DiaryGUI extends JFrame {
 		txtAge.setEditable(false);
 		txtAge.setFont(new Font("Monospaced", Font.BOLD, 18));
 		txtAge.setText("Age..............................");
-		txtAge.setBounds(28, 333, 132, 31);
+		txtAge.setBounds(28, 333, 144, 31);
 		contentPane.add(txtAge);
 		
 		// info: mf
@@ -228,7 +256,7 @@ public class DiaryGUI extends JFrame {
 		txtMF.setEditable(false);
 		txtMF.setText("M/F..................................");
 		txtMF.setFont(new Font("Monospaced", Font.BOLD, 18));
-		txtMF.setBounds(28, 363, 132, 31);
+		txtMF.setBounds(28, 363, 144, 31);
 		contentPane.add(txtMF);
 		
 		// info: breed
@@ -236,7 +264,7 @@ public class DiaryGUI extends JFrame {
 		txtBreed.setEditable(false);
 		txtBreed.setText("Breed...........................");
 		txtBreed.setFont(new Font("Monospaced", Font.BOLD, 18));
-		txtBreed.setBounds(28, 393, 132, 31);
+		txtBreed.setBounds(28, 393, 144, 31);
 		contentPane.add(txtBreed);
 		
 		// info: weight
@@ -244,7 +272,7 @@ public class DiaryGUI extends JFrame {
 		txtWeight.setEditable(false);
 		txtWeight.setText("Weight..........................");
 		txtWeight.setFont(new Font("Monospaced", Font.BOLD, 18));
-		txtWeight.setBounds(28, 423, 132, 31);
+		txtWeight.setBounds(28, 423, 144, 31);
 		contentPane.add(txtWeight);
 		
 		// info: meals
@@ -266,7 +294,7 @@ public class DiaryGUI extends JFrame {
 		// info: meals answer
 		txtAnsMeals = new JTextArea();
 		txtAnsMeals.setEditable(false);
-		txtAnsMeals.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtAnsMeals.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtAnsMeals.setText(getMealSpecifications(dog, date));
 		txtAnsMeals.setBorder(null);
 		txtAnsMeals.setBounds(28, 484, 200, 60);
@@ -277,7 +305,7 @@ public class DiaryGUI extends JFrame {
 		// info: meds answer
 		txtAnsMeds = new JTextArea();
 		txtAnsMeds.setEditable(false);
-		txtAnsMeds.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtAnsMeds.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtAnsMeds.setText(getMedsSpecifications(dog, date));
 		txtAnsMeds.setBorder(null);
 		txtAnsMeds.setBounds(28, 574, 200, 60);
@@ -288,33 +316,33 @@ public class DiaryGUI extends JFrame {
 		// info: age answer
 		txtAnsAge = new JTextArea();
 		txtAnsAge.setEditable(false);
-		txtAnsAge.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtAnsAge.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtAnsAge.setText(getAge(dog, date));
-		txtAnsAge.setBounds(177, 333, 99, 31);
+		txtAnsAge.setBounds(177, 335, 99, 31);
 		contentPane.add(txtAnsAge);
 		
 		// info: mf answer
 		txtAnsMF = new JTextArea();
 		txtAnsMF.setEditable(false);
-		txtAnsMF.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtAnsMF.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtAnsMF.setText(getSex(dog, date));
-		txtAnsMF.setBounds(177, 368, 99, 31);
+		txtAnsMF.setBounds(177, 365, 99, 31);
 		contentPane.add(txtAnsMF);
 		
 		// info: breed answer
 		txtAnsBreed = new JTextArea();
 		txtAnsBreed.setEditable(false);
-		txtAnsBreed.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtAnsBreed.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtAnsBreed.setText(getBreed(dog, date));
-		txtAnsBreed.setBounds(177, 398, 99, 31);
+		txtAnsBreed.setBounds(177, 395, 99, 31);
 		contentPane.add(txtAnsBreed);
 		
 		// info: weight answer
 		txtAnsWeight = new JTextArea();
 		txtAnsWeight.setEditable(false);
-		txtAnsWeight.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtAnsWeight.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtAnsWeight.setText(getWeight(dog, date));
-		txtAnsWeight.setBounds(177, 428, 99, 31);
+		txtAnsWeight.setBounds(177, 425, 99, 31);
 		contentPane.add(txtAnsWeight);
 		
 		// info edit btn
@@ -428,19 +456,108 @@ public class DiaryGUI extends JFrame {
 		btnSaveNotes.setBounds(502, 459, 51, 21);
 		contentPane.add(btnSaveNotes);
 
-		btnMain = new JButton("Main");
+		btnMain = new JButton("return to main");
 		btnMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnMainClick();
 			}
 		});
-		btnMain.setBackground(new Color(143, 188, 143));
+		btnMain.setBackground(new Color(250, 235, 215));
 		btnMain.setBorderPainted(false);
 		btnMain.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		btnMain.setBounds(502, 30, 51, 22);
+		btnMain.setBounds(28, 665, 155, 22);
 		contentPane.add(btnMain);
+
+		btnPastEntries = new JButton("view past entries");
+		btnPastEntries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnPastEntriesClick();
+			}
+		});
+		btnPastEntries.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		btnPastEntries.setBorderPainted(false);
+		btnPastEntries.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		btnPastEntries.setBackground(new Color(250, 235, 215));
+		btnPastEntries.setBounds(28, 700, 182, 22);
+		contentPane.add(btnPastEntries);
+	}
+
+	String getNotifications1(String dog, String date) {
+		// MY CURRENT CHANGES
+		String notifications = "No notifications today.";
+		String vetVisit = getVetVisitBasic(dog, date);
+		int basicDateInt = Integer.parseInt(date);
 		
+		if (!vetVisit.equals("")) {
+			int vetVisitInt = Integer.parseInt(vetVisit);
+			if (vetVisitInt - basicDateInt == 1) {
+				notifications = "Your vet visit is tomorrow.";
+			} 
+			else if (vetVisitInt == basicDateInt) {
+				notifications = "Your vet visit is today.";
+			}
+		}
+		return notifications;
+	
+	}
+	
+	String getNotifications2(String dog, String date) {
+		String notifications = "No notifications today.";
+		String groomerVisit = getGroomerVisitBasic(dog, date);
+
+		int basicDateInt = Integer.parseInt(date);
+		
+		if (!groomerVisit.equals("")) {
+			int groomerVisitInt = Integer.parseInt(groomerVisit);
+			if (groomerVisitInt - basicDateInt == 1) {
+				notifications = "Your groomer visit is tomorrow.";
+			} 
+			else if (groomerVisitInt == basicDateInt) {
+				notifications = "Your groomer visit is today.";
+			}
+		}
+		return notifications;
+	}
+	
+	String getVetVisitBasic(String dog, String date) {
+		File remindersFile = new File(remindersPath);
+		String vetVisit = "";
+		try {
+			Scanner remindersScanner = new Scanner(remindersFile);
+			while (remindersScanner.hasNextLine()) {
+				String currentLine = remindersScanner.nextLine();
+				if (currentLine.equals("Next vet visit")) {
+					vetVisit = remindersScanner.nextLine();
+					break;
+				} remindersScanner.nextLine();
+			}
+			remindersScanner.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vetVisit;
+	}
+	
+	String getGroomerVisitBasic(String dog, String date) {
+		File remindersFile = new File(remindersPath);
+		String groomerVisit = "";
+		try {
+			Scanner remindersScanner = new Scanner(remindersFile);
+			while (remindersScanner.hasNextLine()) {
+				String currentLine = remindersScanner.nextLine();
+				if (currentLine.equals("Next groomer visit")) {
+					groomerVisit = remindersScanner.nextLine();
+					break;
+				} remindersScanner.nextLine();
+			}
+			remindersScanner.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return groomerVisit;
 	}
 	
 	String getVetVisit(String dog, String date) {
@@ -460,6 +577,61 @@ public class DiaryGUI extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		int vetMonth;
+		int vetDay;
+		
+		String fancyVetMonth;
+		String fancyVetDay;
+		
+		// MY CURRENT CHANGES
+		try {
+			vetMonth = Integer.parseInt(vetVisit.substring(4, 6));
+			vetDay = Integer.parseInt(vetVisit.substring(6, 8));
+
+			fancyVetDay = vetDay + "";
+					
+			if (vetMonth == 1) {
+				fancyVetMonth = "January";
+			}
+			else if (vetMonth == 2) {
+				fancyVetMonth = "February";
+			}
+			else if (vetMonth == 3) {
+				fancyVetMonth = "March";
+			}
+			else if (vetMonth == 4) {
+				fancyVetMonth = "April";
+			}
+			else if (vetMonth == 5) {
+				fancyVetMonth = "May";
+			}
+			else if (vetMonth == 6) {
+				fancyVetMonth = "June";
+			}
+			else if (vetMonth == 7) {
+				fancyVetMonth = "July";
+			}
+			else if (vetMonth == 8) {
+				fancyVetMonth = "August";
+			}
+			else if (vetMonth == 9) {
+				fancyVetMonth = "September";
+			}
+			else if (vetMonth == 10) {
+				fancyVetMonth = "October";
+			}
+			else if (vetMonth == 11) {
+				fancyVetMonth = "November";
+			}
+			else {
+				fancyVetMonth = "December";
+			}
+			
+			vetVisit = fancyVetMonth + " " + fancyVetDay;	
+		} 
+		catch (Exception e) {
+		}
+			
 		return vetVisit;
 	}
 	
@@ -480,6 +652,62 @@ public class DiaryGUI extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int groomerMonth;
+		int groomerDay;
+		
+		String fancyGroomerMonth;
+		String fancyGroomerDay;
+		
+		try {
+			groomerMonth = Integer.parseInt(groomerVisit.substring(4, 6));
+			groomerDay = Integer.parseInt(groomerVisit.substring(6, 8));
+			fancyGroomerDay = groomerDay + "";
+			
+			if (groomerMonth == 1) {
+				fancyGroomerMonth = "January";
+			}
+			else if (groomerMonth == 2) {
+				fancyGroomerMonth = "February";
+			}
+			else if (groomerMonth == 3) {
+				fancyGroomerMonth = "March";
+			}
+			else if (groomerMonth == 4) {
+				fancyGroomerMonth = "April";
+			}
+			else if (groomerMonth == 5) {
+				fancyGroomerMonth = "May";
+			}
+			else if (groomerMonth == 6) {
+				fancyGroomerMonth = "June";
+			}
+			else if (groomerMonth == 7) {
+				fancyGroomerMonth = "July";
+			}
+			else if (groomerMonth == 8) {
+				fancyGroomerMonth = "August";
+			}
+			else if (groomerMonth == 9) {
+				fancyGroomerMonth = "September";
+			}
+			else if (groomerMonth == 10) {
+				fancyGroomerMonth = "October";
+			}
+			else if (groomerMonth == 11) {
+				fancyGroomerMonth = "November";
+			}
+			else {
+				fancyGroomerMonth = "December";
+			}
+			
+			groomerVisit = fancyGroomerMonth + " " + fancyGroomerDay;		
+		
+		} 
+		catch (Exception e) {
+			
+		}
+		
 		return groomerVisit;
 	}
 
@@ -645,7 +873,13 @@ public class DiaryGUI extends JFrame {
 		catch (Exception e) {
 		}
 	}
-	
+
+	void btnPastEntriesClick() {
+		dispose();
+		ViewPastEntriesGUI pastFrame = new ViewPastEntriesGUI(userDog);
+		pastFrame.show();
+	}
+
 	void btnMainClick() {
 		dispose();
 		MainGUI mainFrame = new MainGUI();
