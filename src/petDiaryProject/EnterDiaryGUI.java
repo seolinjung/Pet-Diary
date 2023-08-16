@@ -70,6 +70,7 @@ public class EnterDiaryGUI extends JFrame {
 		});
 		btnConfirm.setForeground(Color.BLACK);
 		btnConfirm.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		btnConfirm.setOpaque(true);
 		btnConfirm.setBackground(new Color(250, 235, 215));
 		btnConfirm.setBounds(138, 85, 143, 33);
 		contentPane.add(btnConfirm);
@@ -88,6 +89,7 @@ public class EnterDiaryGUI extends JFrame {
 		});
 		btnMain.setForeground(Color.BLACK);
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		btnMain.setOpaque(true);
 		btnMain.setBorderPainted(false);
 		btnMain.setBackground(new Color(250, 235, 215));
 		btnMain.setBounds(292, 85, 143, 33);
