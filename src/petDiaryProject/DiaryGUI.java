@@ -354,6 +354,7 @@ public class DiaryGUI extends JFrame {
 		});
 		btnEditInfo.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		btnEditInfo.setBorderPainted(false);
+		btnEditInfo.setOpaque(true);
 		btnEditInfo.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnEditInfo.setBackground(new Color(143, 188, 143));
 		btnEditInfo.setBounds(213, 305, 51, 21);
@@ -409,6 +410,7 @@ public class DiaryGUI extends JFrame {
 		});
 		btnEditReminders.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		btnEditReminders.setBorderPainted(false);
+		btnEditReminders.setOpaque(true);
 		btnEditReminders.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnEditReminders.setBackground(new Color(143, 188, 143));
 		btnEditReminders.setBounds(502, 271, 51, 21);
@@ -430,6 +432,7 @@ public class DiaryGUI extends JFrame {
 		txtbxNotes.setBounds(317, 486, 236, 236);
 		txtbxNotes.setLineWrap(true);
 		txtbxNotes.setWrapStyleWord(true);
+		txtbxNotes.setText(getNotes(userDog, basicDate));
 		contentPane.add(txtbxNotes);
 		
 		// btn save notes
@@ -442,6 +445,7 @@ public class DiaryGUI extends JFrame {
 		});
 		btnSaveNotes.setBackground(new Color(143, 188, 143));
 		btnSaveNotes.setBorderPainted(false);
+		btnSaveNotes.setOpaque(true);
 		btnSaveNotes.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnSaveNotes.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		btnSaveNotes.setBounds(502, 459, 51, 21);
@@ -456,6 +460,7 @@ public class DiaryGUI extends JFrame {
 		
 		btnMain.setBackground(new Color(250, 235, 215));
 		btnMain.setBorderPainted(false);
+		btnMain.setOpaque(true);
 		btnMain.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		btnMain.setBounds(28, 665, 155, 22);
@@ -471,6 +476,7 @@ public class DiaryGUI extends JFrame {
 		btnPastEntries.setBorderPainted(false);
 		btnPastEntries.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnPastEntries.setBackground(new Color(250, 235, 215));
+		btnPastEntries.setOpaque(true);
 		btnPastEntries.setBounds(28, 700, 182, 22);
 		contentPane.add(btnPastEntries);
 	}
@@ -713,8 +719,8 @@ public class DiaryGUI extends JFrame {
 			}
 			notesScanner.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String noNotes = "";
+			return noNotes;
 		}
 		return notes;
 	}
