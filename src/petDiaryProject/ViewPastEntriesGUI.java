@@ -58,6 +58,7 @@ public class ViewPastEntriesGUI extends JFrame {
 		contentPane.add(txtEnterDate);
 		
 		btnConfirm = new JButton("Confirm");
+		btnConfirm.setOpaque(true);
 		btnConfirm.setBorderPainted(false);
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,6 +79,7 @@ public class ViewPastEntriesGUI extends JFrame {
 			}
 		});
 		btnMain.setForeground(Color.BLACK);
+		btnMain.setOpaque(true);
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnMain.setBorderPainted(false);
 		btnMain.setBackground(new Color(250, 235, 215));
@@ -87,6 +89,7 @@ public class ViewPastEntriesGUI extends JFrame {
 		txtbxNotes = new JTextArea();
 		txtbxNotes.setEditable(false);
 		txtbxNotes.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		txtbxNotes.setLineWrap(true);
 		txtbxNotes.setWrapStyleWord(true);
 		txtbxNotes.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtbxNotes.setBounds(61, 219, 472, 299);
