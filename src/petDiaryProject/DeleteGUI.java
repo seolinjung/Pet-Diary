@@ -82,6 +82,7 @@ public class DeleteGUI extends JFrame {
 		contentPane.add(btnConfirm);
 		
 		lblConfirmation = new JLabel("");
+		lblConfirmation.setForeground(new Color(255, 99, 71));
 		lblConfirmation.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		lblConfirmation.setBounds(65, 140, 429, 29);
 		contentPane.add(lblConfirmation);
