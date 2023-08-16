@@ -483,13 +483,14 @@ public class DiaryGUI extends JFrame {
 		return groomerVisit;
 	}
 
-	// going to edit now
 	String getNotes(String dog, String date) {
 		File notesFile = new File(notesPath);
 		String notes = "";
 		try {
 			Scanner notesScanner = new Scanner(notesFile);
-			notes = notesScanner.next();
+			while(notesScanner.hasNext()) {
+				notes += notesScanner.next()+" ";
+			}
 			notesScanner.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -644,7 +645,7 @@ public class DiaryGUI extends JFrame {
 		catch (Exception e) {
 		}
 	}
-
+	
 	void btnMainClick() {
 		dispose();
 		MainGUI mainFrame = new MainGUI();
