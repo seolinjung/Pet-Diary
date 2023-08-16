@@ -85,6 +85,9 @@ public class DiaryGUI extends JFrame {
 	String infoPath;
 	String remindersPath;
 	String notesPath;
+
+	// back to main
+	private JButton btnMain;
 	
 	public DiaryGUI(String dog, String date) {
 		
@@ -199,6 +202,8 @@ public class DiaryGUI extends JFrame {
 		txtbxNotifications1 = new JTextArea();
 		txtbxNotifications1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		txtbxNotifications1.setBounds(177, 170, 376, 76);
+		txtbxNotifications1.setLineWrap(true);
+		txtbxNotifications1.setWrapStyleWord(true);
 		contentPane.add(txtbxNotifications1);
 		
 		// info
@@ -260,55 +265,70 @@ public class DiaryGUI extends JFrame {
 		
 		// info: meals answer
 		txtAnsMeals = new JTextArea();
+		txtAnsMeals.setEditable(false);
 		txtAnsMeals.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsMeals.setText(getMealSpecifications(dog, date));
 		txtAnsMeals.setBorder(null);
-		txtAnsMeals.setBounds(28, 484, 248, 51);
+		txtAnsMeals.setBounds(28, 484, 200, 60);
+		txtAnsMeals.setLineWrap(true);
+		txtAnsMeals.setWrapStyleWord(true);
 		contentPane.add(txtAnsMeals);
 		
 		// info: meds answer
 		txtAnsMeds = new JTextArea();
+		txtAnsMeds.setEditable(false);
 		txtAnsMeds.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsMeds.setText(getMedsSpecifications(dog, date));
 		txtAnsMeds.setBorder(null);
-		txtAnsMeds.setBounds(28, 574, 248, 51);
+		txtAnsMeds.setBounds(28, 574, 200, 60);
+		txtAnsMeds.setLineWrap(true);
+		txtAnsMeds.setWrapStyleWord(true);
 		contentPane.add(txtAnsMeds);
 		
 		// info: age answer
 		txtAnsAge = new JTextArea();
-		txtAnsAge.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtAnsAge.setEditable(false);
+		txtAnsAge.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtAnsAge.setText(getAge(dog, date));
 		txtAnsAge.setBounds(177, 333, 99, 31);
 		contentPane.add(txtAnsAge);
 		
 		// info: mf answer
 		txtAnsMF = new JTextArea();
-		txtAnsMF.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtAnsMF.setEditable(false);
+		txtAnsMF.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtAnsMF.setText(getSex(dog, date));
 		txtAnsMF.setBounds(177, 368, 99, 31);
 		contentPane.add(txtAnsMF);
 		
 		// info: breed answer
 		txtAnsBreed = new JTextArea();
-		txtAnsBreed.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtAnsBreed.setEditable(false);
+		txtAnsBreed.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtAnsBreed.setText(getBreed(dog, date));
 		txtAnsBreed.setBounds(177, 398, 99, 31);
 		contentPane.add(txtAnsBreed);
 		
 		// info: weight answer
 		txtAnsWeight = new JTextArea();
-		txtAnsWeight.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtAnsWeight.setEditable(false);
+		txtAnsWeight.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtAnsWeight.setText(getWeight(dog, date));
 		txtAnsWeight.setBounds(177, 428, 99, 31);
 		contentPane.add(txtAnsWeight);
 		
 		// info edit btn
 		btnEditInfo = new JButton("edit");
+		btnEditInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnEditInfoClick(userDog, basicDate);
+			}
+		});
 		btnEditInfo.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		btnEditInfo.setBorderPainted(false);
 		btnEditInfo.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnEditInfo.setBackground(new Color(143, 188, 143));
-		btnEditInfo.setBounds(213, 312, 51, 21);
+		btnEditInfo.setBounds(213, 305, 51, 21);
 		contentPane.add(btnEditInfo);
 		
 		// notifications bottom left
@@ -316,6 +336,8 @@ public class DiaryGUI extends JFrame {
 		txtbxNotifications2.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtbxNotifications2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		txtbxNotifications2.setBounds(28, 658, 248, 66);
+		txtbxNotifications2.setLineWrap(true);
+		txtbxNotifications2.setWrapStyleWord(true);
 		contentPane.add(txtbxNotifications2);
 		
 		// reminders 
@@ -384,10 +406,11 @@ public class DiaryGUI extends JFrame {
 		
 		// notes text box
 		txtbxNotes = new JTextArea();
-		txtbxNotes.setWrapStyleWord(true);
-		txtbxNotes.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtbxNotes.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtbxNotes.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		txtbxNotes.setBounds(317, 486, 236, 236);
+		txtbxNotes.setLineWrap(true);
+		txtbxNotes.setWrapStyleWord(true);
 		contentPane.add(txtbxNotes);
 		
 		// btn save notes
@@ -419,17 +442,6 @@ public class DiaryGUI extends JFrame {
 		contentPane.add(btnMain);
 		
 	}
-	
-	/*String notifications;
-	String vetVisit;
-	String groomerVisit;
-	String notes;
-	String age;
-	String sex;
-	String breed;
-	String weight;
-	String mealSpecifications;
-	String medsSpecifications;*/
 	
 	String getVetVisit(String dog, String date) {
 		File remindersFile = new File(remindersPath);
@@ -470,7 +482,8 @@ public class DiaryGUI extends JFrame {
 		}
 		return groomerVisit;
 	}
-	
+
+	// going to edit now
 	String getNotes(String dog, String date) {
 		File notesFile = new File(notesPath);
 		String notes = "";
@@ -492,7 +505,7 @@ public class DiaryGUI extends JFrame {
 			Scanner infoScanner = new Scanner(infoFile);
 			while (infoScanner.hasNextLine()) {
 				String currentLine = infoScanner.nextLine();
-				if (currentLine.equals("Age")) {
+				if (currentLine.equals("Age:")) {
 					age = infoScanner.nextLine();
 					break;
 				} infoScanner.nextLine();
@@ -512,7 +525,7 @@ public class DiaryGUI extends JFrame {
 			Scanner infoScanner = new Scanner(infoFile);
 			while (infoScanner.hasNextLine()) {
 				String currentLine = infoScanner.nextLine();
-				if (currentLine.equals("Sex")) {
+				if (currentLine.equals("M/F:")) {
 					sex = infoScanner.nextLine();
 					break;
 				} infoScanner.nextLine();
@@ -532,7 +545,7 @@ public class DiaryGUI extends JFrame {
 			Scanner infoScanner = new Scanner(infoFile);
 			while (infoScanner.hasNextLine()) {
 				String currentLine = infoScanner.nextLine();
-				if (currentLine.equals("Breed")) {
+				if (currentLine.equals("Breed:")) {
 					breed = infoScanner.nextLine();
 					break;
 				} infoScanner.nextLine();
@@ -552,7 +565,7 @@ public class DiaryGUI extends JFrame {
 			Scanner infoScanner = new Scanner(infoFile);
 			while (infoScanner.hasNextLine()) {
 				String currentLine = infoScanner.nextLine();
-				if (currentLine.equals("Weight")) {
+				if (currentLine.equals("Weight:")) {
 					weight = infoScanner.nextLine();
 					break;
 				} infoScanner.nextLine();
@@ -572,7 +585,7 @@ public class DiaryGUI extends JFrame {
 			Scanner infoScanner = new Scanner(infoFile);
 			while (infoScanner.hasNextLine()) {
 				String currentLine = infoScanner.nextLine();
-				if (currentLine.equals("Meal Specifications")) {
+				if (currentLine.equals("Meal specifications:")) {
 					mealSpecifications = infoScanner.nextLine();
 					break;
 				} infoScanner.nextLine();
@@ -592,7 +605,7 @@ public class DiaryGUI extends JFrame {
 			Scanner infoScanner = new Scanner(infoFile);
 			while (infoScanner.hasNextLine()) {
 				String currentLine = infoScanner.nextLine();
-				if (currentLine.equals("Age")) {
+				if (currentLine.equals("Medicine:")) {
 					medsSpecifications = infoScanner.nextLine();
 					break;
 				} infoScanner.nextLine();
@@ -606,15 +619,17 @@ public class DiaryGUI extends JFrame {
 	}
 	
 	void btnEditRemindersClick(String userDog, String basicDate) {
+		dispose();
 		EditRemindersGUI editRemindersFrame = new EditRemindersGUI(userDog, basicDate);
 		editRemindersFrame.show();
 	}
 	
-	void btnEditInfoClick(String userInfo) {
-		
+	void btnEditInfoClick(String userDog, String basicDate) {
+		dispose();
+		EditInfoGUI editInfoFrame = new EditInfoGUI(userDog, basicDate);
+		editInfoFrame.show();
 	}
-	
-	
+
 	void btnSaveNotesClick(String userNotes) {
 		try {
 			String currentDir = System.getProperty("user.dir");
@@ -628,5 +643,11 @@ public class DiaryGUI extends JFrame {
 		}
 		catch (Exception e) {
 		}
+	}
+
+	void btnMainClick() {
+		dispose();
+		MainGUI mainFrame = new MainGUI();
+		mainFrame.show();
 	}
 }
