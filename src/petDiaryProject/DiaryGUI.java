@@ -438,7 +438,7 @@ public class DiaryGUI extends JFrame {
 		btnMain.setBorderPainted(false);
 		btnMain.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		btnMain.setBounds(450, 15, 70, 31);
+		btnMain.setBounds(502, 30, 51, 22);
 		contentPane.add(btnMain);
 		
 	}
