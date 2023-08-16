@@ -358,16 +358,7 @@ public class DiaryGUI extends JFrame {
 		btnEditInfo.setBackground(new Color(143, 188, 143));
 		btnEditInfo.setBounds(213, 305, 51, 21);
 		contentPane.add(btnEditInfo);
-		
-		// notifications bottom left
-		txtbxNotifications2 = new JTextArea();
-		txtbxNotifications2.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		txtbxNotifications2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		txtbxNotifications2.setBounds(28, 658, 248, 66);
-		txtbxNotifications2.setLineWrap(true);
-		txtbxNotifications2.setWrapStyleWord(true);
-		contentPane.add(txtbxNotifications2);
-		
+	
 		// reminders 
 		txtReminders = new JTextArea();
 		txtReminders.setEditable(false);
