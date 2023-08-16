@@ -453,13 +453,14 @@ public class DiaryGUI extends JFrame {
 				btnMainClick();
 			}
 		});
+		
 		btnMain.setBackground(new Color(250, 235, 215));
 		btnMain.setBorderPainted(false);
 		btnMain.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		btnMain.setBounds(28, 665, 155, 22);
 		contentPane.add(btnMain);
-
+		
 		btnPastEntries = new JButton("view past entries");
 		btnPastEntries.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
