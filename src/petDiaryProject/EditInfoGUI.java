@@ -155,6 +155,7 @@ public class EditInfoGUI extends JFrame {
 		btnSave.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnSave.setBorderPainted(false);
 		btnSave.setBackground(new Color(250, 235, 215));
+		btnSave.setOpaque(true);
 		btnSave.setBounds(25, 554, 249, 33);
 		contentPane.add(btnSave);
 		
@@ -168,6 +169,7 @@ public class EditInfoGUI extends JFrame {
 		btnDiary.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnDiary.setBorderPainted(false);
 		btnDiary.setBackground(new Color(250, 235, 215));
+		btnDiary.setOpaque(true);
 		btnDiary.setBounds(315, 553, 235, 33);
 		contentPane.add(btnDiary);
 		
