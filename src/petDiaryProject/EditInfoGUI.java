@@ -53,7 +53,7 @@ public class EditInfoGUI extends JFrame {
 		infoPath = System.getProperty("user.dir") + "/" + dog + "/Info/info.txt";
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 600);
+		setBounds(100, 100, 600, 800);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,75 +68,81 @@ public class EditInfoGUI extends JFrame {
 		contentPane.add(txtTitle);
 		
 		txtAge = new JTextArea();
-		txtAge.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtAge.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAge.setText("Enter Age:");
-		txtAge.setBounds(25, 100, 100, 34);
+		txtAge.setBounds(25, 100, 141, 34);
 		contentPane.add(txtAge);
 		
 		txtMF = new JTextArea();
-		txtMF.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtMF.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtMF.setText("Enter Sex (M/F):");
 		txtMF.setBounds(25, 150, 200, 34);
 		contentPane.add(txtMF);
 		
 		txtBreed = new JTextArea();
-		txtBreed.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtBreed.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtBreed.setText("Enter Breed:");
 		txtBreed.setBounds(25, 200, 200, 34);
 		contentPane.add(txtBreed);
 		
 		txtWeight = new JTextArea();
-		txtWeight.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtWeight.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtWeight.setText("Enter Weight:");
 		txtWeight.setBounds(25, 250, 200, 34);
 		contentPane.add(txtWeight);
 		
 		txtMeals = new JTextArea();
-		txtMeals.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtMeals.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtMeals.setText("Enter Meal Specifications:");
-		txtMeals.setBounds(25, 300, 250, 34);
+		txtMeals.setBounds(25, 300, 291, 34);
 		contentPane.add(txtMeals);
 		
 		txtMeds = new JTextArea();
-		txtMeds.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		txtMeds.setText("Enter Medicine:");
-		txtMeds.setBounds(25, 350, 250, 34);
+		txtMeds.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		txtMeds.setText("Enter Meds Specifications:");
+		txtMeds.setBounds(25, 394, 291, 34);
 		contentPane.add(txtMeds);
 		
 		txtAnsAge = new JTextField();
+		txtAnsAge.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsAge.setColumns(10);
-		txtAnsAge.setBounds(350, 90, 100, 34);
+		txtAnsAge.setBounds(350, 98, 200, 34);
 		contentPane.add(txtAnsAge);
 		
 		txtAnsMF = new JTextField();
+		txtAnsMF.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsMF.setColumns(10);
-		txtAnsMF.setBounds(350, 140, 100, 34);
+		txtAnsMF.setBounds(350, 149, 200, 34);
 		contentPane.add(txtAnsMF);
 		
 		txtAnsBreed = new JTextField();
+		txtAnsBreed.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsBreed.setColumns(10);
-		txtAnsBreed.setBounds(350, 190, 150, 34);
+		txtAnsBreed.setBounds(350, 199, 200, 34);
 		contentPane.add(txtAnsBreed);
 		
 		txtAnsWeight = new JTextField();
+		txtAnsWeight.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsWeight.setColumns(10);
-		txtAnsWeight.setBounds(350, 240, 100, 34);
+		txtAnsWeight.setBounds(350, 249, 200, 34);
 		contentPane.add(txtAnsWeight);
 		
 		txtAnsMeals = new JTextField();
+		txtAnsMeals.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsMeals.setColumns(10);
-		txtAnsMeals.setBounds(350, 290, 200, 34);
+		txtAnsMeals.setBounds(25, 347, 525, 34);
 		contentPane.add(txtAnsMeals);
 		
 		txtAnsMeds = new JTextField();
+		txtAnsMeds.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnsMeds.setColumns(10);
-		txtAnsMeds.setBounds(350, 340, 200, 34);
+		txtAnsMeds.setBounds(25, 441, 525, 34);
 		contentPane.add(txtAnsMeds);
 		
 		lblConfirmation = new JLabel("");
 		lblConfirmation.setForeground(new Color(255, 99, 71));
 		lblConfirmation.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		lblConfirmation.setBounds(130, 430, 532, 34);
+		lblConfirmation.setBounds(25, 498, 525, 34);
 		contentPane.add(lblConfirmation);
 		
 		btnSave = new JButton("Save Changes");
@@ -146,10 +152,10 @@ public class EditInfoGUI extends JFrame {
 			}
 		});
 		btnSave.setForeground(Color.BLACK);
-		btnSave.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		btnSave.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnSave.setBorderPainted(false);
 		btnSave.setBackground(new Color(250, 235, 215));
-		btnSave.setBounds(10, 500, 200, 33);
+		btnSave.setBounds(25, 554, 249, 33);
 		contentPane.add(btnSave);
 		
 		btnDiary = new JButton("Diary");
@@ -162,7 +168,7 @@ public class EditInfoGUI extends JFrame {
 		btnDiary.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		btnDiary.setBorderPainted(false);
 		btnDiary.setBackground(new Color(250, 235, 215));
-		btnDiary.setBounds(350, 500, 236, 33);
+		btnDiary.setBounds(315, 553, 235, 33);
 		contentPane.add(btnDiary);
 		
 	}
