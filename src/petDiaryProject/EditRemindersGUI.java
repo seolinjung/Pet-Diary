@@ -35,11 +35,9 @@ public class EditRemindersGUI extends JFrame {
 	private JLabel lblConfirmation;
 	
 	// confirm buttons
-	private JButton btnConfirm1;
-	private JButton btnConfirm2;
+	private JButton btnConfirm;
 	
-	// back to main, back to diary buttons
-	private JButton btnMain;
+	// back to diary buttons
 	private JButton btnDiary;
 	
 	// user dog & date
@@ -56,7 +54,7 @@ public class EditRemindersGUI extends JFrame {
 		remindersPath = System.getProperty("user.dir") + "/" + dog + "/Reminders/reminders.txt";
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 800);
+		setBounds(100, 100, 600, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,46 +96,18 @@ public class EditRemindersGUI extends JFrame {
 		lblConfirmation.setBounds(25, 321, 532, 34);
 		contentPane.add(lblConfirmation);
 		
-		btnConfirm1 = new JButton("Confirm");
-		btnConfirm1.addActionListener(new ActionListener() {
+		btnConfirm = new JButton("Confirm");
+		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String userAnswer = txtAnsVetVisit.getText();
-				btnConfirm1Click(userAnswer);
+				btnConfirmClick();
 			}
 		});
-		btnConfirm1.setForeground(Color.BLACK);
-		btnConfirm1.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		btnConfirm1.setBorderPainted(false);
-		btnConfirm1.setBackground(new Color(250, 235, 215));
-		btnConfirm1.setBounds(414, 140, 143, 33);
-		contentPane.add(btnConfirm1);
-		
-		btnConfirm2 = new JButton("Confirm");
-		btnConfirm2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String userAnswer = txtAnsGroomerVisit.getText();
-				btnConfirm2Click(userAnswer);
-			}
-		});
-		btnConfirm2.setForeground(Color.BLACK);
-		btnConfirm2.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		btnConfirm2.setBorderPainted(false);
-		btnConfirm2.setBackground(new Color(250, 235, 215));
-		btnConfirm2.setBounds(414, 247, 143, 33);
-		contentPane.add(btnConfirm2);
-		
-		btnMain = new JButton("Main");
-		btnMain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnMainClick();
-			}
-		});
-		btnMain.setForeground(Color.BLACK);
-		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		btnMain.setBorderPainted(false);
-		btnMain.setBackground(new Color(250, 235, 215));
-		btnMain.setBounds(25, 376, 236, 33);
-		contentPane.add(btnMain);
+		btnConfirm.setForeground(Color.BLACK);
+		btnConfirm.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		btnConfirm.setBorderPainted(false);
+		btnConfirm.setBackground(new Color(250, 235, 215));
+		btnConfirm.setBounds(25, 376, 236, 33);
+		contentPane.add(btnConfirm);
 		
 		btnDiary = new JButton("Diary");
 		btnDiary.addActionListener(new ActionListener() {
@@ -153,43 +123,38 @@ public class EditRemindersGUI extends JFrame {
 		contentPane.add(btnDiary);
 	}
 	
-	void btnMainClick() {
-		dispose();
-		MainGUI mainFrame = new MainGUI();
-		mainFrame.show();
-	}
-	
 	void btnDiaryClick() {
 		dispose();
 		DiaryGUI diaryFrame = new DiaryGUI(userDog, basicDate);
 		diaryFrame.show();
 	}
 	
-	void btnConfirm1Click(String userAnswer) {
+	void btnConfirmClick() {
 		try {
+			String previousVet = getVetVisit(userDog, basicDate);
+			String previousGroomer = getGroomerVisit(userDog, basicDate);
+			
+			String currentVet = txtAnsVetVisit.getText();
+			String currentGroomer = txtAnsGroomerVisit.getText();
+			
 			FileWriter remindersOutput = new FileWriter(remindersPath);
+			
 			remindersOutput.write("Next vet visit" + "\n");
-			remindersOutput.write(userAnswer + "\n");
+			if (currentVet.equals(""))
+				remindersOutput.write(previousVet + "\n");
+			else
+				remindersOutput.write(currentVet + "\n");
+			
 			remindersOutput.write("Next groomer visit" + "\n");
-			remindersOutput.write(getVetVisit(userDog, basicDate) + "\n");
+			if (currentGroomer.equals(""))
+				remindersOutput.write(previousGroomer + "\n");
+			else
+				remindersOutput.write(currentGroomer + "\n");
+			
 			remindersOutput.close();
+			
 			lblConfirmation.setText("Date successfully changed.");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-	
-	void btnConfirm2Click(String userAnswer) {
-		try {
-			FileWriter remindersOutput = new FileWriter(remindersPath);
-			remindersOutput.write("Next vet visit" + "\n");
-			remindersOutput.write(getVetVisit(userDog, basicDate) + "\n");
-			remindersOutput.write("Next groomer visit" + "\n");
-			remindersOutput.write(userAnswer + "\n");
-			remindersOutput.close();
-			lblConfirmation.setText("Date successfully changed.");
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
