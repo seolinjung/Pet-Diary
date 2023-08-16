@@ -39,6 +39,7 @@ public class AddGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtAnswer = new JTextField();
+		txtAnswer.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		txtAnswer.setBorder(new LineBorder(new Color(171, 173, 179)));
 		txtAnswer.setBounds(284, 31, 209, 29);
 		contentPane.add(txtAnswer);
@@ -115,22 +116,22 @@ public class AddGUI extends JFrame {
 			remindersFile.mkdirs();
 			
 			FileWriter infoOutput = new FileWriter(infoDir + "/info.txt");
-			infoOutput.write("Age:"+ "\n");
-			infoOutput.write("M/F:"+ "\n");
-			infoOutput.write("Breed:"+ "\n");
-			infoOutput.write("Weight:"+ "\n");
-			infoOutput.write("Meal specifications:"+ "\n");
-			infoOutput.write("Medicine:"+ "\n");
+			infoOutput.write("Age:"+ "\n\n");
+			infoOutput.write("M/F:"+ "\n\n");
+			infoOutput.write("Breed:"+ "\n\n");
+			infoOutput.write("Weight:"+ "\n\n");
+			infoOutput.write("Meal specifications:"+ "\n\n");
+			infoOutput.write("Medicine:"+ "\n\n");
 			infoOutput.close();
 			
 			FileWriter remindersOutput = new FileWriter(remindersDir + "/reminders.txt");
-			remindersOutput.write("Next vet visit" + "\n");
-			remindersOutput.write("Next groomer visit" + "\n");
+			remindersOutput.write("Next vet visit" + "\n\n");
+			remindersOutput.write("Next groomer visit" + "\n\n");
 			remindersOutput.close();
 
-			FileWriter output = new FileWriter("petList.txt", true);
-			output.write(userAnswer + "\n");
-			output.close();
+			FileWriter listOutput = new FileWriter("petList.txt", true);
+			listOutput.write(userAnswer + "\n");
+			listOutput.close();
 			lblConfirmation.setText("Name successfully added.");
 			
 		} catch (Exception e1) {
