@@ -54,30 +54,34 @@ public class DeleteGUI extends JFrame {
 		contentPane.add(txtEnterName);
 		
 		btnMain = new JButton("Main");
+		btnMain.setBorderPainted(false);
 		btnMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnMainClick();
 			}
 		});
 		
-		btnMain.setOpaque(false);
 		btnMain.setForeground(Color.BLACK);
 		btnMain.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		btnMain.setBackground(Color.WHITE);
+		btnMain.setOpaque(true);
+		btnMain.setBackground(new Color(250, 235, 215));
 		btnMain.setBounds(292, 85, 143, 33);
 		contentPane.add(btnMain);
 		
 		btnConfirm = new JButton("Confirm");
+		btnConfirm.setBorder(null);
+		btnConfirm.setBorderPainted(false);
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userAnswer = txtAnswer.getText();
 				btnConfirmClick(userAnswer);
 			}
 		});
-		btnConfirm.setOpaque(false);
+		
 		btnConfirm.setForeground(Color.BLACK);
 		btnConfirm.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		btnConfirm.setBackground(Color.WHITE);
+		btnConfirm.setBackground(new Color(250, 235, 215));
+		btnConfirm.setOpaque(true);
 		btnConfirm.setBounds(139, 85, 143, 33);
 		contentPane.add(btnConfirm);
 		
@@ -133,4 +137,3 @@ public class DeleteGUI extends JFrame {
 		mainFrame.show();
 	}
 }
-
